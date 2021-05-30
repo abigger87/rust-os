@@ -1,7 +1,7 @@
 # .cargo/config.toml
 
 [build]
-target = "x86_64-blog_os.json" # Override default cargo build target
+target = "x86-64-blog-os.json" # Override default cargo build target
 
 [unstable]
 build-std-features = ["compiler-builtins-mem"] # Use compiler builtins' memory-related intrinsics
