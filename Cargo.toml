@@ -1,0 +1,13 @@
+[package]
+name = "rust-os"
+version = "0.1.0"
+authors = ["Andreas Bigger <abigger@nascent.xyz>"]
+edition = "2018"
+
+[dependencies]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
