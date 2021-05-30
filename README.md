@@ -19,3 +19,17 @@ Create a bootable disk: `cargo bootimage`
 ## Booting
 
 Boot in QEMU: `qemu-system-x86_64 -drive format=raw,file=target/x86-64-blog-os/debug/bootimage-rust-os.bin`
+
+This opens a window like:
+
+![QEMU](./images/qemu.png)
+
+## Write to a USB Stick
+
+Run `dd if=target/x86-64-blog-os/debug/bootimage-rust-os.bin of=/dev/sdX && sync`
+
+NOTE (from [os.phil-opp.com](https://os.phil-opp.com/minimal-rust-kernel/#real-machine)):
+
+```
+Where sdX is the device name of your USB stick. Be careful to choose the correct device name, because everything on that device is overwritten.
+```
