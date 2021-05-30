@@ -4,8 +4,11 @@ version = "0.1.0"
 authors = ["Andreas Bigger <abigger@nascent.xyz>"]
 edition = "2018"
 
+[workspace]
+
 [dependencies]
 bootloader = "0.9.8"
+vga_buffer = { path = "vga_buffer" }
 
 # the profile used for `cargo build`
 [profile.dev]

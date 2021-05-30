@@ -3,6 +3,8 @@
 #![no_std]
 #![no_main]
 
+// extern crate vga_buffer;
+use vga_buffer;
 use core::panic::PanicInfo;
 
 static HELLO: &[u8] = b"Hello World!";
@@ -18,6 +20,9 @@ pub extern "C" fn _start() -> ! {
             *vga_buffer.offset(i as isize * 2 + 1) = 0xb;
         }
     }
+
+    // ** Test our vga_buffer module
+    vga_buffer::print_something();
 
     loop {}
 }
