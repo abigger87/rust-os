@@ -33,3 +33,7 @@ NOTE (from [os.phil-opp.com](https://os.phil-opp.com/minimal-rust-kernel/#real-m
 ```
 Where sdX is the device name of your USB stick. Be careful to choose the correct device name, because everything on that device is overwritten.
 ```
+
+## Running
+
+Compile kernal and boot into QEMU with `cargo run`
