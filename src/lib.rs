@@ -5,7 +5,7 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use serial::{ serial_println, serial_print };
+pub use serial::{ serial_println, serial_print };
 
 pub trait Testable {
     fn run(&self) -> ();
@@ -22,8 +22,7 @@ where
     }
 }
 
-#[cfg(test)]
-fn test_runner(tests: &[&dyn Testable]) {
+pub fn test_runner(tests: &[&dyn Testable]) {
     serial_println!("Running {} tests", tests.len());
     for test in tests {
         test.run();
