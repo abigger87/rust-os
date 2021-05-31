@@ -123,7 +123,7 @@ impl fmt::Write for Writer {
     }
 }
 
-/// Global Writer Interface with Lazy Instantiation and Spinning Locks
+// Global Writer Interface with Lazy Instantiation and Spinning Locks
 lazy_static! {
     pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
         column_position: 0,
