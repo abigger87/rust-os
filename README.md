@@ -1,4 +1,4 @@
-# rust-os
+# rust_os
 
 Rust-powered OS following the https://os.phil-opp.com/ tutorial
 
@@ -37,3 +37,7 @@ Where sdX is the device name of your USB stick. Be careful to choose the correct
 ## Running
 
 Compile kernal and boot into QEMU with `cargo run`
+
+## Testing
+
+Simply run `cargo test` in the root directory.
