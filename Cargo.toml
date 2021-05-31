@@ -9,8 +9,11 @@ edition = "2018"
 [dependencies]
 bootloader = "0.9.8"
 vga_buffer = { path = "vga_buffer" }
+serial = { path = "serial" }
 x86_64 = "0.14.2"
 
 [package.metadata.bootimage]
-test-args = ["-device", "isa-debug-exit,iobase=0xf4,iosize=0x04"]
+test-args = [
+    "-device", "isa-debug-exit,iobase=0xf4,iosize=0x04", "-serial", "stdio"
+]
 test-success-exit-code = 33

@@ -7,7 +7,9 @@
 #![reexport_test_harness_main = "test_main"]
 
 extern crate vga_buffer;
-use vga_buffer::{println, print};
+extern crate serial;
+use serial::{serial_println, serial_print};
+use vga_buffer::{println};
 use core::panic::PanicInfo;
 
 #[no_mangle]
@@ -23,9 +25,20 @@ pub extern "C" fn _start() -> ! {
 
 /// This function is called on panic.
 /// !! Diverging Function !! - returns "never" type *!*
+#[cfg(not(test))] // new attribute
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
+    loop {}
+}
+
+/// Test mode panic handler
+#[cfg(test)]
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    serial_println!("[failed]\n");
+    serial_println!("Error: {}\n", info);
+    exit_qemu(QemuExitCode::Failed);
     loop {}
 }
 
@@ -47,7 +60,7 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
 
 #[cfg(test)]
 fn test_runner(tests: &[&dyn Fn()]) {
-    println!("Running {} tests", tests.len());
+    serial_println!("Running {} tests", tests.len());
     for test in tests {
         test();
     }
@@ -57,7 +70,7 @@ fn test_runner(tests: &[&dyn Fn()]) {
 
 #[test_case]
 fn trivial_assertion() {
-    print!("trivial assertion... ");
+    serial_print!("trivial assertion... ");
     assert_eq!(1, 1);
-    println!("[ok]");
+    serial_println!("[ok]");
 }
